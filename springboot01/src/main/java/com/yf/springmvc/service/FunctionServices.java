@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 @Scope("prototype")
+//@Scope("singleton")
 // 默认prototype
 public class FunctionServices {
     public String sayHello(String word){
