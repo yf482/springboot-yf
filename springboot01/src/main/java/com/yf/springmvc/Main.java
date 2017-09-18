@@ -1,8 +1,12 @@
 package com.yf.springmvc;
 
+import com.yf.springmvc.doConfig.ProfileConfigure;
 import com.yf.springmvc.doConfig.SpringConfigure;
 import com.yf.springmvc.el.ELConfig;
+import com.yf.springmvc.service.AsyncTaskService;
+import com.yf.springmvc.service.BeanService;
 import com.yf.springmvc.service.FunctionServices;
+import com.yf.springmvc.service.ProfileService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -26,13 +30,37 @@ public class Main {
        */
 
 
-       ELConfig elConfig = context.getBean(ELConfig.class);
+       //EL
+       /*ELConfig elConfig = context.getBean(ELConfig.class);
        System.out.println("elConfig = " + elConfig);
-       elConfig.outPutResource();
+       elConfig.outPutResource();*/
+
+       //bean
+        /*BeanService beanService = context.getBean(BeanService.class);
+        System.out.println("beanService = " + beanService);*/
+
+        //profile
+////        context.getEnvironment().setActiveProfiles("dev");
+//        context.register(ProfileConfigure.class);
+////        context.refresh();
+//        ProfileService profileService = context.getBean(ProfileService.class);
+//        System.out.println("profileService = " + profileService.toString());
 
 
+      /*  AsyncTaskService asyncTaskService = context.getBean(AsyncTaskService.class);
+        for (int i = 0; i < 100; i++) {
+            asyncTaskService.executeAsyncTask(i);
+            asyncTaskService.executeAsyncTaskPlus(i);
+        }
 
-        context.close();
+*/
+      //开启计划 context不要close
+     /* SpringConfigure springConfigure = context.getBean(SpringConfigure.class);
+
+//        context.close();
+*/
+     context.close();
+
 
 
     }

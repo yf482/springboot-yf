@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * 使用@ComponentScan 注解可以扫描包下面的。Service、Controller、Component。Repository。注册成bean
@@ -19,13 +18,18 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @create 2017-09-11 22:35
  **/
 @Configuration
-@ComponentScan("com.yf.springmvc")
-@EnableScheduling //开启对计划任务的支持
-public class SpringConfigure {
+public class ProfileConfigure {
 
-    @Bean(initMethod = "init" , destroyMethod = "destroy")
-    BeanService beanService(){
-        return new BeanService();
+
+    @Bean
+    @Profile("dev")
+    ProfileService profileService(){
+        return new ProfileService("dev");
     }
 
+    @Bean
+    @Profile("test")
+    ProfileService2 profileService2(){
+        return new ProfileService2("dev");
+    }
 }
