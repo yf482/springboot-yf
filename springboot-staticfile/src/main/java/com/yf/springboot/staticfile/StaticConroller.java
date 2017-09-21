@@ -1,4 +1,4 @@
-package com.yf.springboot;
+package com.yf.springboot.staticfile;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ResourceLoader;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @Controller
 public class StaticConroller {
 
-    public static final String ROOT = "C:\\apache-tomcat-7.0.75\\webapps\\manager\\WEB-INF";
+    public static final String ROOT = "d:\\";
 
     private final ResourceLoader resourceLoader;
 
@@ -46,10 +46,12 @@ public class StaticConroller {
                 .collect(Collectors.toList()));
         return "uploadForm";
     }*/
-
+    //方法二：通过请求定位
     @RequestMapping(method = RequestMethod.GET, value = "/res/{filename:.+}")
     @ResponseBody
     public ResponseEntity<?> getFile(@PathVariable String filename) {
+        //不带下层路径可以直接访问
+        //带下层路径的资源需要filename进行urlencode作为请求参数，然后解析后获取
         String path = Paths.get(ROOT, filename).toString();
         try {
             return ResponseEntity.ok(resourceLoader.getResource("file:" + path));

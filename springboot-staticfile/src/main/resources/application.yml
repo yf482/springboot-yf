@@ -5,4 +5,4 @@ spring:
 #   profiles: dev_env
   #注册到eureka上面的应用名称
    application:
-      name: microservice-ci-uiautotest
+      name: springboot-staticfile
