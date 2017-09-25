@@ -1,2 +1,0 @@
-book.author=haha
-book.name=xiyouji
