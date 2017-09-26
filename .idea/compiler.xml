@@ -9,15 +9,19 @@
         <module name="springboot-basic" />
         <module name="springboot-staticfile" />
         <module name="springboot-test" />
+        <module name="springboot-web" />
+        <module name="springboot-web-demo" />
         <module name="springboot02" />
         <module name="springmvc-demo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="springboot-01" target="1.8" />
-      <module name="springboot-basic" target="1.8" />
+      <module name="springboot-basic" target="1.6" />
       <module name="springboot-staticfile" target="1.8" />
       <module name="springboot-test" target="1.8" />
+      <module name="springboot-web" target="1.8" />
+      <module name="springboot-web-demo" target="1.8" />
       <module name="springboot01" target="1.8" />
       <module name="springboot02" target="1.8" />
       <module name="springbootstaticfile" target="1.8" />

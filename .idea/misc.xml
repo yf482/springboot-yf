@@ -10,7 +10,7 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/springboot01/pom.xml" />
-        <option value="$PROJECT_DIR$/springboot-basic/pom.xml" />
+        <option value="$PROJECT_DIR$/springboot-web-demo/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

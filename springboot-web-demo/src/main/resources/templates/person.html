@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf 3 + Spring 4 example</title>
+    <meta charset="utf-8" />
+    <script  type="text/javascript" th:src="@{/bootstrap/js/jquery-2.2.2.min.js}" ></script>
+    <script  type="text/javascript" th:src="@{/bootstrap/js/bootstrap.js}" ></script>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.css}"/>
+</head>
+<body>
+<h1>Thymeleaf 3 + Spring 4 example</h1>
+<p>
+    Hello <span th:text="${person.name}">Peter</span>!!!
+    Hello <span th:text="${person.age}">Peter</span>!!!
+</p>
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">访问model</h3>
+
+    </div>
+    <div class="panel-body">
+        <span th:text="${person.name}"></span>
+    </div>
+</div>
+
+<div th:if="${not #lists.isEmpty(personList)}">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">列表</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="personList:${pr}">
+                    <span th:text="${pr.name}"></span>
+                    <span th:text="${pr.age}"></span>
+                    <button class="btn btn-sm" th:onclick="'getName(\'' + ${pr.name} + '\');'">获取名字</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
+
+<script th:inline="javascript">
+    var person = [[${person}]];
+    console.log(person.name);
+    function getName(name){
+        console.log(name)
+
+    }
+
+</script>
