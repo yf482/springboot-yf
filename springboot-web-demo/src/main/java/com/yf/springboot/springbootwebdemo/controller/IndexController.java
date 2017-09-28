@@ -14,6 +14,14 @@ import java.util.List;
 @RequestMapping("/person")
 public class IndexController {
 
+    /**
+     * 当我们吧index.html放在如下路径时候 访问localhost:8088会自动访问
+     * classpath:/META-INF/resources/index.html
+     * classpath:/resources/index.html
+     * classpath:/static/index.html
+     * classpath:/public/static/index.html
+     * @return
+     */
     @RequestMapping("/index")
     public String getPersonList(){
         return "index";

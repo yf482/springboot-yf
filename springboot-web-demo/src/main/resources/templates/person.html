@@ -42,6 +42,42 @@
     </div>
 
 </div>
+<div th:if="${not #lists.isEmpty(personList)}">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">列表</h3>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item" th:each="pr:${personList}">
+                    <span th:text="${pr.name}"></span>
+                    <span th:text="${pr.age}"></span>
+                    <button class="btn btn-sm" th:onclick="'getName(\'' + ${pr.name} + '\');'">获取名字</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<div th:if="${not #lists.isEmpty(personList)}">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">列表</h3>
+        </div>
+        <div class="panel-body">
+            <table>
+                <tbody>
+                <tr th:each="per: ${personList}">
+                    <td th:text="${per.name}">Oranges</td>
+                    <td th:text="${#numbers.formatDecimal(per.age, 1, 2)}">0.99</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>
