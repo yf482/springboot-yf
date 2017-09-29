@@ -1,4 +1,4 @@
-package com.yf.springboot.springbootwebdemo.config;
+package com.yf.springboot.springbootwebdemo.websocket;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
@@ -19,6 +19,6 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         super.configureMessageBroker(registry);
-        registry.enableSimpleBroker("topic");
+        registry.enableSimpleBroker("/topic");
     }
 }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Thymeleaf 3 + Spring 4 example</title>
+    <meta charset="utf-8" />
+    <script  type="text/javascript" th:src="@{/bootstrap/js/jquery-2.2.2.min.js}" ></script>
+    <script  type="text/javascript" th:src="@{/js/sockjs.min.js}" ></script>
+    <script  type="text/javascript" th:src="@{/js/stomp.min.js}" ></script>
+
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"></link>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.css}"></link>
+</head>
+<body  onload="disconnect();">
+<noscript><h2 style="color:#d58512">no support webSocket</h2></noscript>
+<div>
+    <button id="connect" onlick="connect();">connect</button>
+    <button id="disconnect"  disabled="disabled" onlick="disconnect();">disconnect</button>
+
+    <div id="conversationDiv">
+        <label>please input your name:</label>
+        <input type="text" id="name"/>
+        <button id="sendName" onclick="sendName;">send</button>
+        <p id="response"></p>
+
+    </div>
+</div>
+</body>
+</html>
+
+<script type="javascript">
+    var stompClient = null;
+
+    function  setConnected(connected) {
+        document.getElementById('connect').disabled = connected;
+        document.getElementById('disconnect').disabled = !connected;
+        document.getElementById('conversationDiv').style.visibility = connected ? 'visible': 'hidden';
+        $('#response').html();
+
+    }
+
+    function connect(){
+        debugger;
+        var socket = new SockJS('/endpointWisely');
+        stompClient = Stomp.over(socket);
+        stompClient.connected({},function(frame){
+            setConnected(true);
+            console.log("connected" + frame);
+            stompClient.subscribe('/topic/getResponse',function(response){
+                showResponse(JSON.parse(response.body));
+            })
+        });
+    }
+
+    function  disconnect() {
+        if(stompClient != null){
+            stompClient.disconnect();
+        }
+        setConnected(false);
+        console.log("disconnected");
+
+    }
+
+    function sendName() {
+        var name = $("#name").val();
+        stompClient.send("/welcome",{},JSON.stringify({'name': name}));
+    }
+
+    function showResponse(message){
+        var response = $('#response');
+        response.html(message);
+    }
+
+</script>
