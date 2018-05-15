@@ -10,16 +10,19 @@
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"></link>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap-theme.css}"></link>
 </head>
-<body  onload="disconnect();">
+<!--<body  onload="disconnect()">-->
+<body>
 <noscript><h2 style="color:#d58512">no support webSocket</h2></noscript>
 <div>
-    <button id="connect" onlick="connect();">connect</button>
+    <button id="connect" onlick="connect()">connect</button>
+    <input type="button" value="connect2" onclick="connect()"/>
     <button id="disconnect"  disabled="disabled" onlick="disconnect();">disconnect</button>
 
     <div id="conversationDiv">
         <label>please input your name:</label>
         <input type="text" id="name"/>
         <button id="sendName" onclick="sendName;">send</button>
+
         <p id="response"></p>
 
     </div>
@@ -27,7 +30,7 @@
 </body>
 </html>
 
-<script type="javascript">
+<script type="text/javascript">
     var stompClient = null;
 
     function  setConnected(connected) {
@@ -39,10 +42,10 @@
     }
 
     function connect(){
-        debugger;
         var socket = new SockJS('/endpointWisely');
         stompClient = Stomp.over(socket);
-        stompClient.connected({},function(frame){
+        stompClient.connect
+        stompClient.connect({},function(frame){
             setConnected(true);
             console.log("connected" + frame);
             stompClient.subscribe('/topic/getResponse',function(response){
@@ -51,7 +54,7 @@
         });
     }
 
-    function  disconnect() {
+    function  disconnect(){
         if(stompClient != null){
             stompClient.disconnect();
         }
@@ -60,7 +63,7 @@
 
     }
 
-    function sendName() {
+    function sendName(){
         var name = $("#name").val();
         stompClient.send("/welcome",{},JSON.stringify({'name': name}));
     }
@@ -68,6 +71,10 @@
     function showResponse(message){
         var response = $('#response');
         response.html(message);
+    }
+
+    window.onload=function () {
+        disconnect();
     }
 
 </script>
