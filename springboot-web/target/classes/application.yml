@@ -1,0 +1,23 @@
+#java -jar xx.jar --server.port=8082
+server:
+   port: 8081
+   context-path: /web
+spring:
+#   profiles: dev_env
+  #注册到eureka上面的应用名称
+   application:
+      name: springboot-web
+   http:
+     encoding:
+       charset: UTF-8
+#或者使用jvm配置外部命令 -Dspring.profiles.active=dev
+#   profiles:
+#     active: dev
+#默认使用logback日志
+logging:
+  file: D:/test.log
+logging.level.org.springframework.web: DEBUG
+#查看springboot已经启动自动配置报告  jvm: --debug
+#debug: true
+
+

@@ -2,19 +2,19 @@ server.port: 8088
 spring.thymeleaf.cache: false
 
 server:
-#用户会话session过期时间 以秒单位
+#?????session??????? ????位
   session-timeout: 1000
   tomcat:
-    uri-encoding: UTF-8 #默认UTF-8
-    compression: on #tomcat是否开启压缩 默认off
+    uri-encoding: UTF-8 #???UTF-8
+    compression: on #tomcat???????? ???off
 #  ssl:
 ##    key-store: classpath:.keystore
 #    key-store: D:/.keystore
 #    key-store-password: yf4821
 #    key-store-type: JKS
 #    key-alias: tomcat
-#默认读取static 等springboot 配置目录下的favicon.ico
+#?????static ??springboot ?????????favicon.ico
 spring:
   mvc:
     favicon:
-      enabled: true #默认关闭
+      enabled: true #?????
