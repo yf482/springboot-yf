@@ -11,7 +11,8 @@ import org.springframework.stereotype.Component;
  * @create 2017-09-25 22:12
  **/
 @Component
-@ConfigurationProperties(locations = {"classpath:test.properties"},prefix = "author")
+//@ConfigurationProperties(locations = {"classpath:test.properties"},prefix = "author")
+@ConfigurationProperties(prefix = "author")
 public class AuthorSetting {
 
     private String name;

@@ -2,6 +2,9 @@
 server:
    port: 8081
    context-path: /basic
+   session:
+     cookie:
+       name: SESSION-HA
 spring:
 #   profiles: dev_env
   #注册到eureka上面的应用名称

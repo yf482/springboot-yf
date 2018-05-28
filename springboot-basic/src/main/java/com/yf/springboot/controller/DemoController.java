@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author yunfeng
  * @version V.1.0
@@ -18,8 +20,10 @@ public class DemoController {
 
     @RequestMapping(value = "/demo1",produces = MediaType.TEXT_PLAIN_VALUE)
     @ResponseBody
-    public String test1(int id,String name){
+    public String test1(int id, String name, HttpSession session){
         String str = id + ":" + name;
-        return str;
+        session.setAttribute("name","123");
+        String sessionId = session.getId();
+        return str + " sessionId:"+ sessionId;
     }
 }
